@@ -84,13 +84,13 @@ public class RequestDB {
         }
 
         public Report listOfRequests () throws SQLException {
-            String requestString = "SELECT clientId AS Client_Id, requestId AS Request_Id, name AS Name, quantity AS Quantity, price AS Price FROM requests";
+            String requestString = "SELECT clientID AS Client_ID, requestId AS Request_Id, name AS Name, quantity AS Quantity, price AS Price FROM requests";
             PreparedStatement prep1 = connection.prepareStatement(requestString);
             return fillReport(prep1);
         }
 
         public Report listOfClientRequests (int clientId) throws SQLException {
-            String requestString = "SELECT clientId AS Client_Id, requestId AS Request_Id, name AS Name, quantity AS Quantity, price AS Price FROM requests WHERE clientId = ?";
+            String requestString = "SELECT clientID AS Client_ID, requestId AS Request_Id, name AS Name, quantity AS Quantity, price AS Price FROM requests WHERE clientId = ?";
             PreparedStatement prep1 = connection.prepareStatement(requestString);
             prep1.setInt(1, clientId);
             return fillReport(prep1);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Report {
 
-    ArrayList<ArrayList<String>> reportList = new ArrayList<ArrayList<String>>();
+    ArrayList<ArrayList<String>> reportList = new ArrayList<>();
 
     public interface ReportPrinter {
 

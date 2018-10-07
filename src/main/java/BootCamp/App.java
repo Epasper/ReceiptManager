@@ -1,5 +1,6 @@
 package BootCamp;
 
+import javafx.application.Application;
 import org.apache.commons.io.FilenameUtils;
 import org.xml.sax.SAXException;
 
@@ -19,8 +20,6 @@ public class App {
 
         for (int i = 0; i < args.length; i++) {
             File file = new File(args[i]);
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String text;
             String extension = FilenameUtils.getExtension(args[i]).toLowerCase();
 
             ArrayList<Request> result = RequestBuilderFactory.getBuilder(extension).parse(file);
@@ -28,6 +27,8 @@ public class App {
 
         }
 
-        requestDB.getReportGenerator().listOfRequests().print(new ReportScreenPrinter());
+        requestDB.getReportGenerator().clientSumOfPrices(1).print(new ReportScreenPrinter());
+
+        Application.launch(FXScene.class, args);
     }
 }
