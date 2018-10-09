@@ -37,17 +37,16 @@ public class FXScene extends Application {
     Button averageAllPricesButton = new Button("Average of All Priices");
     Button getAverageAllPricesSingleUserButton = new Button("Average of All Prices for Single User");
     Button totalRequestSaveAs = new Button("\uD83D\uDCBE");
-    Button totalRequestsSingleUserSaveAs = new Button("Save As");
-    Button sumOfPricesSaveAs = new Button("Save As");
-    Button sumOfPricesSingleUserSaveAs = new Button("Save As");
-    Button listOfRequestSaveAs = new Button("Save As");
-    Button listOfRequestSingleUserSaveAs = new Button("Save As");
-    Button averageAllPricesSaveAs = new Button("Save As");
-    Button getAverageAllPricesSingleUserSaveAs = new Button("Save As");
+    Button totalRequestsSingleUserSaveAs = new Button("\uD83D\uDCBE");
+    Button sumOfPricesSaveAs = new Button("\uD83D\uDCBE");
+    Button sumOfPricesSingleUserSaveAs = new Button("\uD83D\uDCBE");
+    Button listOfRequestSaveAs = new Button("\uD83D\uDCBE");
+    Button listOfRequestSingleUserSaveAs = new Button("\uD83D\uDCBE");
+    Button averageAllPricesSaveAs = new Button("\uD83D\uDCBE");
+    Button getAverageAllPricesSingleUserSaveAs = new Button("\uD83D\uDCBE");
     TextField resultsTxtField = new TextField();
     FileChooser saveAsFileChooser = new FileChooser();
     TextInputDialog inputDialog = new TextInputDialog();
-
 
 
     RequestDB requestDB = new RequestDB();
@@ -74,7 +73,6 @@ public class FXScene extends Application {
     }
 
 
-
     @Override
     public void start(Stage stage) {
         stage.setTitle("Receipt Manager by Szymon Ilnicki");
@@ -96,14 +94,14 @@ public class FXScene extends Application {
         mainGrid.add(totalRequestsSingleUserButton, 0, 2);
         totalRequestsSingleUserButton.setMaxWidth(buttonWidth);
         totalRequestsSingleUserButton.setOnAction(event -> {
-                Optional<String> result = inputDialog.showAndWait();
-                result.ifPresent(name -> {
-                    try {
-                        requestDB.getReportGenerator().listOfClientRequests(Integer.parseInt(name)).print(new ReportScreenPrinter());
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
+            Optional<String> result = inputDialog.showAndWait();
+            result.ifPresent(name -> {
+                try {
+                    requestDB.getReportGenerator().listOfClientRequests(Integer.parseInt(name)).print(new ReportScreenPrinter());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
         });
         mainGrid.add(sumOfPricesButton, 0, 3);
         sumOfPricesButton.setMaxWidth(buttonWidth);
@@ -117,11 +115,14 @@ public class FXScene extends Application {
         mainGrid.add(sumOfPricesSingleUserButton, 0, 4);
         sumOfPricesSingleUserButton.setMaxWidth(buttonWidth);
         sumOfPricesSingleUserButton.setOnAction(event -> {
-            try {
-                requestDB.getReportGenerator().clientSumOfPrices(2).print(new ReportScreenPrinter());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            Optional<String> result = inputDialog.showAndWait();
+            result.ifPresent(name -> {
+                try {
+                    requestDB.getReportGenerator().clientSumOfPrices(Integer.parseInt(name)).print(new ReportScreenPrinter());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
         });
         mainGrid.add(listOfRequestButton, 0, 5);
         listOfRequestButton.setMaxWidth(buttonWidth);
@@ -135,11 +136,14 @@ public class FXScene extends Application {
         mainGrid.add(listOfRequestSingleUserButton, 0, 6);
         listOfRequestSingleUserButton.setMaxWidth(buttonWidth);
         listOfRequestSingleUserButton.setOnAction(event -> {
-            try {
-                requestDB.getReportGenerator().listOfClientRequests(1).print(new ReportScreenPrinter());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            Optional<String> result = inputDialog.showAndWait();
+            result.ifPresent(name -> {
+                try {
+                    requestDB.getReportGenerator().listOfClientRequests(Integer.parseInt(name)).print(new ReportScreenPrinter());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
         });
         mainGrid.add(averageAllPricesButton, 0, 7);
         averageAllPricesButton.setMaxWidth(buttonWidth);
@@ -153,11 +157,14 @@ public class FXScene extends Application {
         mainGrid.add(getAverageAllPricesSingleUserButton, 0, 8);
         getAverageAllPricesSingleUserButton.setMaxWidth(buttonWidth);
         getAverageAllPricesSingleUserButton.setOnAction(event -> {
-            try {
-                requestDB.getReportGenerator().averageOfClientPrices(1).print(new ReportScreenPrinter());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            Optional<String> result = inputDialog.showAndWait();
+            result.ifPresent(name -> {
+                try {
+                    requestDB.getReportGenerator().averageOfClientPrices(Integer.parseInt(name)).print(new ReportScreenPrinter());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
         });
         mainGrid.add(totalRequestSaveAs, 1, 1);
         totalRequestSaveAs.setOnAction(event -> {
@@ -169,6 +176,106 @@ public class FXScene extends Application {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        mainGrid.add(totalRequestsSingleUserSaveAs, 1, 2);
+        totalRequestsSingleUserSaveAs.setOnAction(event -> {
+            Optional<String> result = inputDialog.showAndWait();
+            saveAsFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            File file = saveAsFileChooser.showSaveDialog(stage);
+            if (file != null) {
+                result.ifPresent(name -> {
+                    try {
+                        requestDB.getReportGenerator().listOfClientRequests(Integer.parseInt(name)).print(new ReportScreenPrinter());
+                        requestDB.getReportGenerator().listOfClientRequests(Integer.parseInt(name)).print(new ReportCsvPrinter(file));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
+        mainGrid.add(sumOfPricesSaveAs, 1, 3);
+        sumOfPricesSaveAs.setOnAction(event -> {
+            saveAsFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            File file = saveAsFileChooser.showSaveDialog(stage);
+            if (file != null) {
+                try {
+                    requestDB.getReportGenerator().sumOfPrices().print(new ReportCsvPrinter(file));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        mainGrid.add(sumOfPricesSingleUserSaveAs, 1, 4);
+        sumOfPricesSingleUserSaveAs.setOnAction(event -> {
+            Optional<String> result = inputDialog.showAndWait();
+            saveAsFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            File file = saveAsFileChooser.showSaveDialog(stage);
+            if (file != null) {
+                result.ifPresent(name -> {
+                    try {
+                        requestDB.getReportGenerator().clientSumOfPrices(Integer.parseInt(name)).print(new ReportScreenPrinter());
+                        requestDB.getReportGenerator().clientSumOfPrices(Integer.parseInt(name)).print(new ReportCsvPrinter(file));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
+        mainGrid.add(listOfRequestSaveAs, 1, 5);
+        listOfRequestSaveAs.setOnAction(event -> {
+            saveAsFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            File file = saveAsFileChooser.showSaveDialog(stage);
+            if (file != null) {
+                try {
+                    requestDB.getReportGenerator().listOfRequests().print(new ReportCsvPrinter(file));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        mainGrid.add(listOfRequestSingleUserSaveAs, 1, 6);
+        listOfRequestSingleUserSaveAs.setOnAction(event -> {
+            Optional<String> result = inputDialog.showAndWait();
+            saveAsFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            File file = saveAsFileChooser.showSaveDialog(stage);
+            if (file != null) {
+                result.ifPresent(name -> {
+                    try {
+                        requestDB.getReportGenerator().listOfClientRequests(Integer.parseInt(name)).print(new ReportScreenPrinter());
+                        requestDB.getReportGenerator().listOfClientRequests(Integer.parseInt(name)).print(new ReportCsvPrinter(file));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
+        mainGrid.add(averageAllPricesSaveAs, 1, 7);
+        averageAllPricesSaveAs.setOnAction(event -> {
+            saveAsFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            File file = saveAsFileChooser.showSaveDialog(stage);
+            if (file != null) {
+                try {
+                    requestDB.getReportGenerator().averageOfPrices().print(new ReportCsvPrinter(file));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        mainGrid.add(getAverageAllPricesSingleUserSaveAs, 1, 8);
+        getAverageAllPricesSingleUserSaveAs.setOnAction(event -> {
+            Optional<String> result = inputDialog.showAndWait();
+            saveAsFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            File file = saveAsFileChooser.showSaveDialog(stage);
+            if (file != null) {
+                result.ifPresent(name -> {
+                    try {
+                        requestDB.getReportGenerator().averageOfClientPrices(Integer.parseInt(name)).print(new ReportScreenPrinter());
+                        requestDB.getReportGenerator().averageOfClientPrices(Integer.parseInt(name)).print(new ReportCsvPrinter(file));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                });
             }
         });
         resultsTxtField.setPrefHeight(300);
