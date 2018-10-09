@@ -23,8 +23,9 @@ class ReportScreenPrinter implements Report.ReportPrinter {
         System.out.println();
         for (ArrayList<String> a : data) {
             for (int i = 0; i < a.size(); i++) {
+                System.out.print(a.get(i));
                 if (i != a.size() - 1) {
-                    System.out.print(a.get(i) + ", \t");
+                    System.out.print(", \t");
                 } else {
                     System.out.println();
                 }

@@ -71,7 +71,7 @@ public class RequestDB {
         }
 
         public Report sumOfPrices () throws SQLException {
-            String requestString = "SELECT SUM(price) AS Sum_Of_Prices FROM requests";
+            String requestString = "SELECT SUM (price) AS Sum_Of_Prices FROM requests";
             PreparedStatement prep1 = connection.prepareStatement(requestString);
             return fillReport (prep1);
         }

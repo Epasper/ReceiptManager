@@ -6,12 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 
-public class ReportTest extends Report {
-
-
-    public ReportTest(ArrayList<String> columnNames) {
-        super(columnNames);
-    }
+public class ReportTest {
 
 //    @Test(expected = RuntimeException.class)
 //    public void FactoryShouldThrowUnsupportedFiletypeOnTxt()
@@ -22,17 +17,20 @@ public class ReportTest extends Report {
     ArrayList<String> data;
     ArrayList<String> columnNames;
 
-    @Before
-    public void prepareData() {
-        data.add(1, "a");
-        data.add(2,"b");
-        columnNames.add(1,"a");
-    }
 
     @Test(expected = RuntimeException.class)
     public void addReportRowShouldThrowException() {
+        ArrayList<String> columnNames = new ArrayList<>();
+        columnNames.add("a");
+        columnNames.add("b");
         Report report = new Report(columnNames);
-        addReportRow(data);
+
+
+
+        ArrayList<String> wrongData = new ArrayList<>();
+        wrongData.add("Test");
+
+        report.addReportRow(wrongData);
     }
 
     @Test
