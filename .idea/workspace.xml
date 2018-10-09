@@ -408,7 +408,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539112483848" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539112494014" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="D:/Program Files/Git/git-cmd.exe" />
@@ -549,9 +549,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ReportTest_addReportRowShoudThrowException - 2018.10.07 at 17h 20m 45s.xml">
-      <configuration name="ReportTest.addReportRowShoudThrowException" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ReportTest_addReportRowShoudThrowException - 2018.10.07 at 17h 21m 01s.xml">
       <configuration name="ReportTest.addReportRowShoudThrowException" configurationId="JUnit" />
     </history-entry>
@@ -577,6 +574,9 @@
       <configuration name="ReportTest.addReportRowShouldThrowException" configurationId="JUnit" />
     </history-entry>
     <history-entry file="ReportTest_addReportRowShouldThrowException - 2018.10.09 at 21h 10m 49s.xml">
+      <configuration name="ReportTest.addReportRowShouldThrowException" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ReportTest_addReportRowShouldThrowException - 2018.10.09 at 21h 11m 19s.xml">
       <configuration name="ReportTest.addReportRowShouldThrowException" configurationId="JUnit" />
     </history-entry>
   </component>
