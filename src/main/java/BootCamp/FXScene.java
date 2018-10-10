@@ -278,7 +278,7 @@ public class FXScene extends Application {
                 });
             }
         });
-        resultsTxtField.setPrefHeight(300);
+        resultsTxtField.setPrefHeight(150);
         resultsTxtField.setText(startupMessage);
         mainGrid.add(resultsTxtField, 0, 9);
 
