@@ -1,0 +1,1 @@
+mvn exec:java -Dexec.mainClass="pl.mordalski.Main" -Dexec.args="%argumenty%"
