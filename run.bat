@@ -1,1 +1,1 @@
-mvn exec:java -Dexec.mainClass="pl.mordalski.Main" -Dexec.args="%argumenty%"
+mvn exec:java -Dexec.mainClass="java.BootCamp.App" -Dexec.args="%argumenty%"
