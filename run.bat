@@ -1,1 +1,1 @@
-mvn compile:java -Dexec.mainClass="java.BootCamp.Main" -Dexec.args="%*"
+mvn exec:java -Dexec.mainClass="bootcamp.App" -Dexec.args="%*"
