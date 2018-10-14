@@ -15,26 +15,6 @@ public class Request {
         this.price = price;
     }
 
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setRequestId(long requestId) {
-        this.requestId = requestId;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getClientId() {
         return clientId;
     }

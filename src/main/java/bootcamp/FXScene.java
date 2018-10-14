@@ -28,6 +28,10 @@ public class FXScene extends Application {
     List<String> printLoadedFiles;
     GridPane mainGrid = new GridPane();
     Scene startingScene = new Scene(mainGrid, 420, 500);
+    /**
+     * @author Szymon Ilnicki
+     * Buttons to be implemented DRY in later version
+     */
     Button totalRequestButton = new Button("Generate a Total Request Report");
     Button totalRequestsSingleUserButton = new Button("Generate a Total Request Report for a Single Customer");
     Button sumOfPricesButton = new Button("Sum of All Prices");
@@ -44,6 +48,9 @@ public class FXScene extends Application {
     Button listOfRequestSingleUserSaveAs = new Button("\uD83D\uDCBE");
     Button averageAllPricesSaveAs = new Button("\uD83D\uDCBE");
     Button getAverageAllPricesSingleUserSaveAs = new Button("\uD83D\uDCBE");
+    /**
+     * In later version, the results of queries will be returned in the resultsTxtField
+     */
     TextField resultsTxtField = new TextField();
     FileChooser saveAsFileChooser = new FileChooser();
     TextInputDialog inputDialog = new TextInputDialog();
@@ -51,9 +58,20 @@ public class FXScene extends Application {
 
     RequestDB requestDB = new RequestDB();
 
+    /**
+     * Overriding the JavaFX.application.Application method.
+     * @throws SQLException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
     @Override
     public void init() throws SQLException, ParserConfigurationException, SAXException, IOException {
-
+        /**
+         * Getting the arguments for the app
+         * params - List of app's arguments
+         * extension - possible file extensions @see RequestBuilderCsv, RequestBuilderXml. The toLowerCase method is present to lower the risk of exceptions occurrence.
+         */
         Parameters param1 = this.getParameters();
         List<String> params = param1.getRaw();
         for (int i = 0; i < params.size(); i++) {
@@ -81,7 +99,9 @@ public class FXScene extends Application {
         mainGrid.setVgap(10);
         mainGrid.setPadding(new Insets(25, 25, 25, 25));
         String startupMessage = new String("Welcome to Receipt Manager. The files " + printLoadedFiles + " have been loaded");
-//        mainGrid.add(startupMessage, 0, 0);
+        /**
+         * Implementation of the buttons onto the scene will be in accordance with the DRY methodology in later version.
+         */
         mainGrid.add(totalRequestButton, 0, 1);
         totalRequestButton.setMaxWidth(buttonWidth);
         totalRequestButton.setOnAction(event -> {
@@ -278,9 +298,10 @@ public class FXScene extends Application {
                 });
             }
         });
-        resultsTxtField.setPrefHeight(150);
+        resultsTxtField.setPrefHeight(120.0);
         resultsTxtField.setText(startupMessage);
-        mainGrid.add(resultsTxtField, 0, 9);
+        resultsTxtField.setDisable(true);
+        mainGrid.add(resultsTxtField, 0, 10);
 
         stage.show();
     }
